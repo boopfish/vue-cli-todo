@@ -11,7 +11,7 @@
 <script>
 export default {
   name: "TodoFooter",
-  props: ['todoList', 'deleteFinishedItem', 'clickSelectAll'],
+  props: ['todoList'],
   computed: {
     finishedItemCount() {
       return this.todoList.reduce((prev, todoItem) => {
@@ -26,13 +26,13 @@ export default {
         return this.finishedItemCount === this.allItems && this.allItems > 0;
       },
       set(value) {
-        this.clickSelectAll(value);
+        this.$emit("clickSelectAll", value);
       }
     }
   },
   methods: {
     deleteFinishedTodo() {
-      this.deleteFinishedItem();
+      this.$emit("deleteFinishedItem");
     }
   }
 }

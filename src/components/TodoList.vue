@@ -4,8 +4,6 @@
       <TodoItem v-for="todo in todoList"
                 :key="todo.id"
                 :todoItem="todo"
-                :deleteTodoItem="deleteTodoItem"
-                :closeTodoItem="closeTodoItem"
       />
     </ul>
   </div>
@@ -17,7 +15,7 @@ import TodoItem from "./TodoItem";
 export default {
   name: "TodoList",
   components: {TodoItem},
-  props: ['todoList', 'deleteTodoItem', 'closeTodoItem']
+  props: ['todoList']
 }
 </script>
 

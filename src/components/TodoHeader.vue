@@ -16,12 +16,12 @@ export default {
       todoItemValue: ''
     }
   },
-  props: ['addTodoItem'],
   methods: {
     add() {
       if (!this.$refs.inputItem.value) return alert("You must input something");
       const obj = {id: nanoid(), text: this.$refs.inputItem.value, done: false};
-      this.addTodoItem(obj);
+      //手动触发事件 给父组件进行传值
+      this.$bus.$emit("addTodoItem", obj)
     }
   }
 }

@@ -11,10 +11,10 @@
 <script>
 export default {
   name: "TodoItem",
-  props: ['todoItem', 'deleteTodoItem', 'closeTodoItem'],
+  props: ['todoItem'],
   methods: {
     closeItem(id) {
-      this.closeTodoItem(id);
+      this.$bus.$emit('closeTodoItem', id);
       if (this.todoItem.done) {
         this.$refs.item.className = "";
       } else {
@@ -22,7 +22,7 @@ export default {
       }
     },
     deleteItem(id) {
-      this.deleteTodoItem(id);
+      this.$bus.$emit('deleteTodoItem', id);
     }
   }
 }
