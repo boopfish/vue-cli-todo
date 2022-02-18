@@ -38,7 +38,7 @@ export default {
         //为todoItem对象添加新属性
         this.$set(todoItem, "isEdit", true);
       }
-
+      // 该回调函数会在dom节点更新完毕之后在执行
       this.$nextTick(function () {
         this.$refs.inputTitle.focus();
       })
