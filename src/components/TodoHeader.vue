@@ -1,7 +1,11 @@
 <template>
   <div class="inner-header">
-    <transition>
-      <h2 v-show="isShow">My To Do List</h2>
+    <transition
+        appear
+        name="animate__animated animate__bounce"
+        enter-active-class="animate__swing"
+        leave-active-class="animate__swing">
+      <h2>My To Do List</h2>
     </transition>
     <input type="text" placeholder="Title..." ref="inputItem">
     <button type="button" @click="add">add</button>
@@ -11,19 +15,18 @@
 <script>
 import {nanoid} from 'nanoid';
 import pubsub from "pubsub-js";
+import 'animate.css';
 
 export default {
   name: "TodoHeader",
   data() {
     return {
-      todoItemValue: '',
-      isShow: true
+      todoItemValue: ''
     }
   },
   methods: {
     add() {
       if (!this.$refs.inputItem.value) return alert("You must input something");
-      this.isShow = !this.isShow;
       const obj = {id: nanoid(), text: this.$refs.inputItem.value, done: false};
       //手动触发事件 给父组件进行传值
       this.$bus.$emit("addTodoItem", obj)
@@ -60,24 +63,5 @@ button {
   width: 25%;
 }
 
-.v-enter-active {
-  animation: hello 1s;
-}
-
-.v-leave-active {
-  animation: hello 1s reverse;
-}
-
-@keyframes hello {
-
-  from {
-    transform: translateX(-100%);
-  }
-
-  go {
-    transform: translateX(0px);
-  }
-
-}
 
 </style>
