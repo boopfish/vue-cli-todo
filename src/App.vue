@@ -12,6 +12,7 @@
 import TodoHeader from "./components/TodoHeader";
 import TodoList from "./components/TodoList";
 import TodoFooter from "./components/TodoFooter";
+import pubsub from "pubsub-js";
 
 export default {
   name: 'App',
@@ -51,6 +52,13 @@ export default {
       this.todoList.forEach(todoItem => {
         todoItem.done = value;
       })
+    },
+    editTodoItem(id, value) {
+      this.todoList.filter((todoItem) => {
+        if (todoItem.id === id) {
+          todoItem.text = value;
+        }
+      })
     }
   },
   //开启深度监听 存入到本地缓存中
@@ -72,6 +80,15 @@ export default {
     this.$bus.$on("addTodoItem", this.addTodoItem);
     this.$bus.$on('closeTodoItem', this.closeTodoItem);
     this.$bus.$on('deleteTodoItem', this.deleteTodoItem);
+    //绑定编辑事件
+    this.$bus.$on('editTodoItem', this.editTodoItem);
+
+    /**
+     * 订阅消息
+     */
+    pubsub.subscribe("addTodoItem", (messageType, message) => {
+      console.log("订阅者APP组件收到了消息", messageType, message)
+    })
 
   },
   //解绑所有事件

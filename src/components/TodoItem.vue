@@ -2,7 +2,12 @@
   <div>
     <li ref="item" :class="{'is-checked':todoItem.done}">
       <input type="checkbox" :checked="todoItem.done" @change="closeItem(todoItem.id)">
-      {{ todoItem.text }}
+      <label v-show="!todoItem.isEdit" @click="editItem(todoItem)">{{ todoItem.text }}</label>
+      <input type="text"
+             v-show="todoItem.isEdit"
+             :value="todoItem.text"
+             @blur.stop="handleBlur(todoItem,$event)"
+             ref="inputTitle">
       <span class="close" @click.stop="deleteItem(todoItem.id)">x</span>
     </li>
   </div>
@@ -23,6 +28,28 @@ export default {
     },
     deleteItem(id) {
       this.$bus.$emit('deleteTodoItem', id);
+    },
+    //修改待办事项
+    editItem(todoItem) {
+      if (Object.prototype.hasOwnProperty.call(todoItem, "isEdit")) {
+        console.log("已有isEdit属性");
+        todoItem.isEdit = true;
+      } else {
+        //为todoItem对象添加新属性
+        this.$set(todoItem, "isEdit", true);
+      }
+
+      this.$nextTick(function () {
+        this.$refs.inputTitle.focus();
+      })
+      console.log(todoItem)
+    },
+    //输入框失去焦点时保存修改数据
+    handleBlur(todoItem, event) {
+      if(!event.target.value)return alert("Input must not be empty")
+      console.log("触发失去焦点事件");
+      this.todoItem.isEdit = false;
+      this.$bus.$emit('editTodoItem', todoItem.id, event.target.value);
     }
   }
 }
@@ -62,6 +89,15 @@ li.is-checked {
 
 .close {
   position: absolute;
+  float: right;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.edit {
+  position: absolute;
+  float: right;
   right: 0;
   top: 0;
   padding: 12px 16px 12px 16px;

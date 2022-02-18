@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import {nanoid} from 'nanoid'
+import {nanoid} from 'nanoid';
+import pubsub from "pubsub-js";
 
 export default {
   name: "TodoHeader",
@@ -22,6 +23,9 @@ export default {
       const obj = {id: nanoid(), text: this.$refs.inputItem.value, done: false};
       //手动触发事件 给父组件进行传值
       this.$bus.$emit("addTodoItem", obj)
+
+      // 生产者发送消息
+      pubsub.publish("addTodoItem", obj);
     }
   }
 }
