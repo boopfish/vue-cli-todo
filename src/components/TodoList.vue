@@ -6,7 +6,7 @@
           name="animate__animated animate__bounce"
           enter-active-class="animate__backInLeft"
           leave-active-class="animate__backOutUp">
-        <TodoItem v-for="todo in $store.todoList"
+        <TodoItem v-for="todo in $store.state.todoList"
                   :key="todo.id"
                   :todoItem="todo"
         />
@@ -21,8 +21,7 @@ import 'animate.css'
 
 export default {
   name: "TodoList",
-  components: {TodoItem},
-  props: ['todoList']
+  components: {TodoItem}
 }
 </script>
 

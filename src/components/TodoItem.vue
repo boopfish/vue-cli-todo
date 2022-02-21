@@ -46,10 +46,10 @@ export default {
     },
     //输入框失去焦点时保存修改数据
     handleBlur(todoItem, event) {
-      if(!event.target.value)return alert("Input must not be empty")
+      if (!event.target.value) return alert("Input must not be empty")
       console.log("触发失去焦点事件");
       this.todoItem.isEdit = false;
-      this.$bus.$emit('editTodoItem', todoItem.id, event.target.value);
+      this.$store.dispatch('editTodoItem', {id: todoItem.id, text: event.target.value})
     }
   }
 }

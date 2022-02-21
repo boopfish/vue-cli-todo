@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      todoList: this.$store.todoList
+      todoList: this.$store.state.todoList
     }
   },
   methods: {
@@ -38,22 +38,6 @@ export default {
       console.log("删除待办事项:", id)
       this.todoList = this.todoList.filter(todoItem => todoItem.id !== id);
     },
-    //删除已完成的待办事项
-    deleteFinishedItem() {
-      this.todoList = this.todoList.filter((todoItem) => !todoItem.done);
-    },
-    clickSelectAll(value) {
-      this.todoList.forEach(todoItem => {
-        todoItem.done = value;
-      })
-    },
-    editTodoItem(id, value) {
-      this.todoList.filter((todoItem) => {
-        if (todoItem.id === id) {
-          todoItem.text = value;
-        }
-      })
-    }
   },
   //开启深度监听 存入到本地缓存中
   watch: {
