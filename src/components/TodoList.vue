@@ -6,7 +6,7 @@
           name="animate__animated animate__bounce"
           enter-active-class="animate__backInLeft"
           leave-active-class="animate__backOutUp">
-        <TodoItem v-for="todo in todoList"
+        <TodoItem v-for="todo in $store.todoList"
                   :key="todo.id"
                   :todoItem="todo"
         />

@@ -12,7 +12,6 @@
 import TodoHeader from "./components/TodoHeader";
 import TodoList from "./components/TodoList";
 import TodoFooter from "./components/TodoFooter";
-import pubsub from "pubsub-js";
 
 export default {
   name: 'App',
@@ -21,15 +20,10 @@ export default {
   },
   data() {
     return {
-      todoList: JSON.parse(localStorage.getItem("todoList")) || [],
+      todoList: this.$store.todoList
     }
   },
   methods: {
-    //增加待办事项
-    addTodoItem(obj) {
-      console.log("增加待办事项:", obj);
-      this.todoList.unshift(obj);
-    },
     //关闭待办事项
     closeTodoItem(id) {
       console.log("关闭待办事项:", id)
@@ -82,13 +76,6 @@ export default {
     this.$bus.$on('deleteTodoItem', this.deleteTodoItem);
     //绑定编辑事件
     this.$bus.$on('editTodoItem', this.editTodoItem);
-
-    /**
-     * 订阅消息
-     */
-    pubsub.subscribe("addTodoItem", (messageType, message) => {
-      console.log("订阅者APP组件收到了消息", messageType, message)
-    })
 
   },
   //解绑所有事件

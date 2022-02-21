@@ -14,7 +14,7 @@ export default {
   props: ['todoList'],
   computed: {
     finishedItemCount() {
-      return this.todoList.reduce((prev, todoItem) => {
+      return this.$.todoList.reduce((prev, todoItem) => {
         return prev + (todoItem.done ? 1 : 0);
       }, 0)
     },
