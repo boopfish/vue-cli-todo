@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <h3>{{ title }}</h3>
-    <slot></slot>
+    <slot name="center"></slot>
+    <slot name="footer"></slot>
   </div>
 </template>
 

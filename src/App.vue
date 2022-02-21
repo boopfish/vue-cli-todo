@@ -1,13 +1,32 @@
 <template>
   <div id="app">
     <Category :listData="foods" title="美食">
-      <img src="logo.png" alt="">
+      <img slot="center" src="logo.png" alt="">
+      <a slot="footer" src="javascript:void(0)">查看更多美食</a>
     </Category>
+
     <Category :listData="films" title="电影">
-      <li v-for="data in films" :key="data">{{ data }}</li>
+      <ul slot="center">
+        <li v-for="data in films" :key="data">{{ data }}</li>
+      </ul>
+      <div slot="footer">
+        <a>冒险电影</a>
+        <a>搞笑电影</a>
+      </div>
+
     </Category>
     <Category :listData="books" title="图书">
-      <li v-for="data in books" :key="data">{{ data }}</li>
+      <ul slot="center">
+        <li v-for="data in books" :key="data">{{ data }}</li>
+      </ul>
+      <!-- v-slot:footer只能用在template标签中-->
+      <template v-slot:footer>
+        <div>
+          <a>科普</a>
+          <a>编程</a>
+        </div>
+        <h4>欢迎来到图书馆</h4>
+      </template>
     </Category>
   </div>
 </template>
@@ -32,5 +51,13 @@ export default {
 img {
   width: 100px;
   height: 100px;
+}
+
+a {
+  display: block;
+}
+
+h4 {
+  text-align: center;
 }
 </style>
