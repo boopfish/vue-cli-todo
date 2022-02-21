@@ -26,6 +26,12 @@ const mutations = {
         console.log(state.sum)
     }
 };
+//当state中的属性需要经过加工之后在使用时或者逻辑可以复用  使用getters进行复杂运算
+const getters = {
+    result(state) {
+        return state.sum * 10;
+    }
+}
 const state = {
     //定义todolist
     sum: 0
@@ -35,5 +41,6 @@ const state = {
 export default new Vuex.Store({
     actions,
     mutations,
-    state
+    state,
+    getters
 });
