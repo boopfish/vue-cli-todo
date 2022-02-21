@@ -1,15 +1,18 @@
 <template>
   <div class="container">
     <h3>{{ title }}</h3>
-    <slot name="center"></slot>
-    <slot name="footer"></slot>
+    <slot :foods="foods"></slot>
   </div>
 </template>
 
 <script>
 export default {
   name: "Category",
-  props: [ 'listData','title']
+  data() {
+    return {
+      foods: ['红烧牛肉', '蒜泥白肉', '糖醋里脊', '小炒肉']
+    }
+  }
 }
 </script>
 
@@ -22,7 +25,8 @@ export default {
   margin-left: 50px;
   text-align: center;
 }
-li{
+
+li {
   text-align: left;
 }
 
