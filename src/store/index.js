@@ -34,7 +34,9 @@ const getters = {
 }
 const state = {
     //定义todolist
-    sum: 0
+    sum: 0,
+    schoolName: 'CQDX',
+    subject: 'Vue'
 };
 
 //向外暴露
