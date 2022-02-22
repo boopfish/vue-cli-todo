@@ -8,12 +8,14 @@
              :value="todoItem.text"
              @blur.stop="handleBlur(todoItem,$event)"
              ref="inputTitle">
-      <span class="close" @click.stop="deleteItem(todoItem.id)">x</span>
+      <span class="close" @click.stop="deleteTodoItem(todoItem.id)">x</span>
     </li>
   </div>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   name: "TodoItem",
   props: ['todoItem'],
@@ -26,9 +28,8 @@ export default {
         this.$refs.item.className = "is-checked";
       }
     },
-    deleteItem(id) {
-      this.$bus.$emit('deleteTodoItem', id);
-    },
+    ...mapActions(['deleteTodoItem'])
+    ,
     //修改待办事项
     editItem(todoItem) {
       if (Object.prototype.hasOwnProperty.call(todoItem, "isEdit")) {
