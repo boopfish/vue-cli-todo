@@ -3,7 +3,17 @@
     <span>用户邮件发送组件</span>
     <ul>
       <li v-for="(msg,index) in msgList" :key="index">
-        <router-link :to="`/user/email/detail/${msg.receiver}/${msg.message}`">{{ msg.receiver }}
+        <!--普通写法-->
+        <!--<router-link :to="`/user/email/detail/${msg.receiver}/${msg.content}`">{{ msg.receiver }}</router-link>-->
+        <!--对象写法的时候必须要传入name字段-->
+        <router-link :to="{
+          name:'EmailDetail',
+          params:{
+          receiver:msg.receiver,
+          content:msg.content
+          }
+        }">
+          {{ msg.receiver }}
         </router-link>
       </li>
     </ul>
@@ -17,8 +27,8 @@ export default {
   data() {
     return {
       msgList: [
-        {receiver: '001', message: 'hello world'},
-        {receiver: '002', message: 'world hello'}]
+        {receiver: '001', content: 'hello world'},
+        {receiver: '002', content: 'world hello'}]
     }
   }
 }

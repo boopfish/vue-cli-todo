@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5>{{1111}}</h5>
+    <h5>{{$route.params.content}}</h5>
   </div>
 </template>
 

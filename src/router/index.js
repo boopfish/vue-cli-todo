@@ -18,6 +18,7 @@ export default new VueRouter({
       path: 'email',
       component: UserEmail,
       children: [{
+        name:'EmailDetail',
         path: 'detail/:receiver/:content',
         component: EmailDetail
       }]
