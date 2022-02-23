@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h5>{{1111}}</h5>
+    <h5>{{content}}</h5>
   </div>
 </template>
 
 <script>
 export default {
   name: "EmailDetail",
+  props:['receiver','content'],
   mounted() {
     console.log('@@@@@',this)
   }
