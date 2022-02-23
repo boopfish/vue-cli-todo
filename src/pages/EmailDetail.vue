@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5>{{$route.query.message}}</h5>
+    <h5>{{$route.query.content}}</h5>
   </div>
 </template>
 
