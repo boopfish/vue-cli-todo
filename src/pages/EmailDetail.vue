@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5>{{$route.query.message}}</h5>
+    <h5>{{1111}}</h5>
   </div>
 </template>
 

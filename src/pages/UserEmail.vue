@@ -3,7 +3,7 @@
     <span>用户邮件发送组件</span>
     <ul>
       <li v-for="(msg,index) in msgList" :key="index">
-        <router-link :to="`/user/email/detail?receiver=${msg.receiver}&message=${msg.message}`">{{ msg.receiver }}
+        <router-link :to="`/user/email/detail/${msg.receiver}/${msg.message}`">{{ msg.receiver }}
         </router-link>
       </li>
     </ul>
