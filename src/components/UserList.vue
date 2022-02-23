@@ -11,7 +11,13 @@
 
 <script>
 export default {
-  name: "UserList"
+  name: "UserList",
+  activated() {
+    console.log("用户列表组件被激活了")
+  },
+  deactivated() {
+    console.log("用户列表组件失效了")
+  }
 }
 </script>
 
